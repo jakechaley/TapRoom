@@ -20,7 +20,7 @@ function Tap(props) {
 Tap.propTypes = {
   brand: PropTypes.string,
   name: PropTypes.string,
-  price: PropTypes.string,
+  price: PropTypes.number,
   flavor: PropTypes.string,
   id: PropTypes.string,
   whenTapClicked: PropTypes.func
