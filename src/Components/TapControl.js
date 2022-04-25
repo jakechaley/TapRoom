@@ -1,6 +1,7 @@
 import React from "react";
 import NewTapForm from "./NewTapForm";
 import TapList from "./TapList";
+import TapDetail from "./TapDetail";
 
 class TapControl extends React.Component {
 
@@ -8,8 +9,16 @@ class TapControl extends React.Component {
     super(props);
     this.state = {
       formVisibleOnPage: false,
-      mainTapList: []
+      mainTapList: [],
+      selectedTap: null
     };
+  }
+
+  handleChangingSelectedTap = (id) => {
+    const selectedTap = this.state.mainTapList.filter(tap => tap.id === id)[0];
+    this.setState({
+      selectedTap: selectedTap
+    });
   }
 
   handleAddingNewTapToList = (newTap) => {
@@ -20,19 +29,30 @@ class TapControl extends React.Component {
   }
 
   handleClick = () => {
-    this.setState(prevState => ({
-      formVisibleOnPage: !prevState.formVisibleOnPage
-    }));
+    if (this.state.selectedTap != null) {
+      this.setState({
+        formVisibleOnPage: false,
+        selectedTap: null
+      });
+    } else {
+      this.setState(prevState => ({
+        formVisibleOnPage: !prevState.formVisibleOnPage,
+      }));
+    }
   }
   render(){
     let currentlyVisibleState = null;
     let buttonText = null;
-    if(this.state.formVisibleOnPage) {
-      currentlyVisibleState = <NewTapForm onNewTapCreation = {this.handleAddingNewTapToList}/>
-      buttonText= "Return To Tap List";
+
+    if (this.state.selectedTap != null) {
+      currentlyVisibleState = <TapDetail tap = {this.state.selectedTap} />
+      buttonText = "Return to Tap List";
+    } else if (this.state.formVisibleOnPage) {
+      currentlyVisibleState = <NewTapForm onNewTapCreation={this.handleAddingNewTapToList}  />;
+      buttonText = "Return to Tap List";
     } else {
-      currentlyVisibleState = <TapList tapList={this.state.mainTapList}/>;
-      buttonText= "Add Tap"
+      currentlyVisibleState = <TapList tapList={this.state.mainTapList} onTapSelection={this.handleChangingSelectedTap} />;
+      buttonText = "Add Tap";
     }
 
     return (
