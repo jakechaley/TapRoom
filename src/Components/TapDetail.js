@@ -11,7 +11,6 @@ function TapDetail(props){
         <h2>{tap.price}</h2>
         <h2>{tap.flavor}</h2>
       <hr/>
-      <button>Sell A Pint</button>
     </React.Fragment>
   );
 }

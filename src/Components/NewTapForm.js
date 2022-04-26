@@ -12,31 +12,16 @@ function NewTapForm(props) {
       name: event.target.name.value, 
       price: event.target.price.value, 
       flavor: event.target.flavor.value,
+      pintsSold: parseInt(event.target.pintsSold.value),
       id: v4() 
     });
   }
 
   return (
     <React.Fragment>
-      <form onSubmit={handleNewTapFormSubmission}>
-        <input 
-        type="text"
-        name="brand"
-        placeholder="Brand"/>
-        <input 
-        type="text" 
-        name="name"
-        placeholder="Name"/>
-        <input 
-        type="text" 
-        name="price"
-        placeholder="Price"/>
-        <input 
-        type="text" 
-        name="flavor"
-        placeholder="Flavor"/>
-        <button type="submit">Add New Tap!</button>
-      </form>
+      <ReusableForm
+      formSubmissionHandler={handleNewTapFormSubmission}
+      buttonText="Add Tap" />
     </React.Fragment>
   );
 }
