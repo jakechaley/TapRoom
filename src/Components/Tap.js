@@ -11,7 +11,7 @@ function Tap(props) {
         <h2>Name: {props.name}</h2>
         <h2>Flavor: {props.flavor}</h2>
         <h3>Price: {props.price}</h3>
-        <h3>Pints Left: {props.pints}</h3>
+        <h3>Pints Left: {props.pintsLeft}</h3>
         <hr/>
       </div>
     </React.Fragment>
@@ -21,7 +21,7 @@ function Tap(props) {
 Tap.propTypes = {
   brand: PropTypes.string,
   name: PropTypes.string,
-  price: PropTypes.number,
+  price: PropTypes.string,
   flavor: PropTypes.string,
   id: PropTypes.string,
   pintsLeft: PropTypes.number,

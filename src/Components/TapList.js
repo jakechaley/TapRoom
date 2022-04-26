@@ -8,8 +8,8 @@ function TapList(props){
   return (
   <React.Fragment>
     <hr/>
-    {props.tapList.map((tap, index) => 
-    <React.Fragment>
+    {props.tapList.map((tap) => 
+    <React.Fragment key={tap.id}>
       <Tap 
       whenTapClicked = {props.onTapSelection}
       brand={tap.brand}
@@ -17,8 +17,7 @@ function TapList(props){
       price={tap.price}
       flavor={tap.flavor}
       pintsLeft={tap.pintsLeft}
-      id={tap.id}
-      key={tap.id}/>
+      id={tap.id} />
       <button onClick={()=> onSellPint(tap.id)}>Sell Pint</button>
       <hr/>
       </React.Fragment>
