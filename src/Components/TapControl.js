@@ -14,16 +14,6 @@ class TapControl extends React.Component {
     };
   }
 
-  handleChangePintsSold = (id, numberOfPints) => {
-    let soldTap = this.state.mainTapList.filter((tap) => tap.id === id)[0];
-    soldTap.pintsSold += numberOfPints;
-    this.setState({
-      mainTapList: this.state.mainTapList
-        .filter((tap) => tap.id !== id)
-        .concat(soldTap)
-    });
-  }
-
   handleChangingSelectedTap = (id) => {
     const selectedTap = this.state.mainTapList.filter(tap => tap.id === id)[0];
     this.setState({
@@ -51,7 +41,6 @@ class TapControl extends React.Component {
     }
   }
   render(){
-    const currentTapList = this.state.mainTapList;
     let currentlyVisibleState = null;
     let buttonText = null;
 
@@ -68,12 +57,6 @@ class TapControl extends React.Component {
 
     return (
       <React.Fragment>
-        <div>
-          <TapList
-            currentTapList={currentTapList}
-            onTapSelection={this.handleChangingSelectedTap}
-            onChangingPintsSold={this.handleChangePintsSold}/>
-        </div>
         {currentlyVisibleState}
         <button onClick={this.handleClick}>{buttonText}</button>
       </React.Fragment>
